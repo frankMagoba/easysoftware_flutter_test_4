@@ -54,7 +54,6 @@ class _UserListState extends State<UserList> {
                   'No Users',
                   style: TextStyle(
                     color: Colors.black,
-                    fontFamily: 'sf-ui',
                   ),
                 ),
               );

@@ -117,9 +117,6 @@ class _UserDetailState extends State<UserDetail> {
                     child: new RaisedButton(
                   child: new Text(
                     "Update",
-                    style: TextStyle(
-                      fontFamily: 'sf-ui',
-                    ),
                   ),
                   textColor: Colors.white,
                   color: Colors.green,
@@ -137,9 +134,6 @@ class _UserDetailState extends State<UserDetail> {
                     child: new RaisedButton(
                   child: new Text(
                     "Cancel",
-                    style: TextStyle(
-                      fontFamily: 'sf-ui',
-                    ),
                   ),
                   textColor: Colors.white,
                   color: Colors.red,
