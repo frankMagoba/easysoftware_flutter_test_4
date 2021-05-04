@@ -31,11 +31,11 @@ class _UserDetailState extends State<UserDetail> {
 
   @override
   void initState() {
-    getProspInf();
+    getUSerDetails();
     super.initState();
   }
 
-  getProspInf() {
+  getUSerDetails() {
     setState(() {
       nameController.text = widget.name;
       emailController.text = widget.email;

@@ -18,10 +18,10 @@ class _UserListState extends State<UserList> {
   @override
   void initState() {
     super.initState();
-    getProspects();
+    getUsers();
   }
 
-  Future getProspects() async {
+  Future getUsers() async {
     http.Response response = await http.get(
       'https://607e868602a23c0017e8b79e.mockapi.io/api/v1/users',
     );
@@ -38,7 +38,7 @@ class _UserListState extends State<UserList> {
         ),
       ),
       body: FutureBuilder(
-          future: getProspects(),
+          future: getUsers(),
           builder: (context, snapshot) {
             if (snapshot.data == null) {
               return Center(
