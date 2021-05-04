@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:easy_software_test_4/users/userdetail.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sweetalert/sweetalert.dart';
@@ -12,9 +13,7 @@ class UserList extends StatefulWidget {
 }
 
 class _UserListState extends State<UserList> {
-  String token;
   int id;
-  final items = List<String>.generate(20, (i) => "Prospect ${i + 1}");
 
   @override
   void initState() {
@@ -72,61 +71,35 @@ class _UserListState extends State<UserList> {
                         child: Container(
                           padding: EdgeInsets.all(5),
                           child: ListTile(
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 10.0),
-                            leading: Container(
-                              padding: EdgeInsets.only(right: 12.0),
-                              decoration: new BoxDecoration(
-                                  border: new Border(
-                                      right: new BorderSide(
-                                          width: 1.0, color: Colors.blue))),
-                              child: Icon(Icons.person, color: Colors.blue),
+                            leading: CircleAvatar(
+                              radius: 16.0,
+                              child: ClipRRect(
+                                child:
+                                    Image.asset(snapshot.data[index]['avatar']),
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
                             ),
-                            title: Text(
-                              snapshot.data[index]['name'],
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                            title: Text(snapshot.data[index]['name']),
+                            subtitle: Text(snapshot.data[index]['email']),
+                            trailing: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => UserDetail(
+                                              snapshot.data[index]['id'],
+                                              snapshot.data[index]['name'],
+                                              snapshot.data[index]['email'],
+                                              snapshot.data[index]
+                                                  ['phoneNumber'],
+                                            )));
+                              },
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.grey,
+                                size: 20.0,
+                              ),
                             ),
-                            subtitle: Row(
-                              children: <Widget>[
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(
-                                      child: LinearProgressIndicator(
-                                          backgroundColor: Color.fromRGBO(
-                                              209, 224, 224, 0.2),
-                                          value: 9,
-                                          valueColor: AlwaysStoppedAnimation(
-                                              Colors.blue)),
-                                    )),
-                                Expanded(
-                                  flex: 4,
-                                  child: Padding(
-                                      padding: EdgeInsets.only(left: 10.0),
-                                      child: Text(snapshot.data[index]['email'],
-                                          style:
-                                              TextStyle(color: Colors.black))),
-                                )
-                              ],
-                            ),
-                            trailing: Icon(Icons.keyboard_arrow_right,
-                                color: Colors.black, size: 30.0),
-                            // onTap: () {
-                            //   Navigator.push(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //           builder: (context) => ProspectDetail(
-                            //               snapshot.data[index]['ap_name'],
-                            //               snapshot.data[index]['ap_date'],
-                            //               snapshot.data[index]['ap_type'],
-                            //               snapshot.data[index]['ap_phone_no'],
-                            //               snapshot.data[index]['ap_email'],
-                            //               snapshot.data[index]['ap_location'],
-                            //               snapshot.data[index]['ap_reason'],
-                            //               snapshot.data[index]['ap_priority'],
-                            //               snapshot.data[index]['ap_id'])));
-                            // },
                           ),
                         ),
                       ),
